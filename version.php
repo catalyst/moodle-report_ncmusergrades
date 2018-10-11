@@ -26,6 +26,6 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'report_ncmusergrades';
 $plugin->release = '0.1.0';
-$plugin->version = 2018100802;
+$plugin->version = 2018101001;
 $plugin->requires = 2017111300;
 $plugin->maturity = MATURITY_ALPHA;

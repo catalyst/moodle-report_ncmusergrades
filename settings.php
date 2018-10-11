@@ -24,12 +24,14 @@
 
 defined('MOODLE_INTERNAL') || die;
 
+$systemcontextid = context_system::instance()->id;
+
 $ADMIN->add(
     'reports', 
     new admin_externalpage(
         'reportlinkname',
         get_string('reportlinkname', 'report_ncmusergrades'),
-        "$CFG->wwwroot/report/ncmusergrades/index.php",'moodle/backup:backupcourse'));
+        new moodle_url('/report/ncmusergrades/index.php', array('pagecontextid' => $systemcontextid))));
 
 // no report settings
 $settings = null;

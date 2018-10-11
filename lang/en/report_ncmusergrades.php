@@ -27,3 +27,17 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'NCM User Grades';
 $string['reportlinkname'] = 'User Grades';
+$string['filter'] = 'Filter';
+$string['filterby'] = 'Filter by';
+$string['userid'] = 'User ID';
+$string['rulemsguserid'] = 'The user ID is required';
+
+$string['nolearningplanavailable'] = 'No learning plan available';
+$string['apply'] = 'Apply';
+$string['selectlearningplantemplate'] = 'Choose a learning plan template';
+$string['usersfromtemplate'] = 'Users from this template';
+$string['scalesfortemplate'] = 'Scales for this template';
+$string['scalefilterby'] = 'Filter scale(s) by';
+$string['nolearningplanavailable'] = 'No learning plan available';
+$string['apply'] = 'Apply';
+

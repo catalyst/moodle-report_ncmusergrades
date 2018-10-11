@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Report competency .
+ * User Grade Report .
  *
  * @package    report_ncmusergrades
  * @author     Nicolas Jourdain <nicolas.jourdain@navitas.com>
@@ -29,16 +29,16 @@ $pagecontextid = required_param('pagecontextid', PARAM_INT);
 $context = context::instance_by_id($pagecontextid);
 
 require_login();
-\core_competency\api::require_enabled();
+// \core_competency\api::require_enabled();
 
-if (!\core_competency\template::can_read_context($context)) {
-    throw new required_capability_exception($context, 'moodle/competency:templateview', 'nopermissions', '');
-}
+// if (!\core_competency\template::can_read_context($context)) {
+//     throw new required_capability_exception($context, 'moodle/competency:templateview', 'nopermissions', '');
+// }
 
 $urlparams = array('pagecontextid' => $pagecontextid);
 
-$url = new moodle_url('/report/lpmonitoring/index.php', $urlparams);
-$title = get_string('pluginname', 'report_lpmonitoring');
+$url = new moodle_url('/report/ncmusergrades/index.php', $urlparams);
+$title = get_string('pluginname', 'report_ncmusergrades');
 
 if ($context->contextlevel == CONTEXT_SYSTEM) {
     $heading = $SITE->fullname;
@@ -49,18 +49,18 @@ if ($context->contextlevel == CONTEXT_SYSTEM) {
 }
 
 // Set css.
-$PAGE->requires->css('/report/lpmonitoring/style/checkbox.css');
+$PAGE->requires->css('/report/ncmusergrades/style/checkbox.css');
 $PAGE->set_context($context);
 $PAGE->set_url($url);
 $PAGE->set_title($title);
 $PAGE->set_heading($heading);
 $PAGE->set_pagelayout('admin');
 
-$output = $PAGE->get_renderer('report_lpmonitoring');
+$output = $PAGE->get_renderer('report_ncmusergrades');
 
 echo $output->header();
 echo $output->heading($title);
 
-$page = new \report_lpmonitoring\output\report($context);
+$page = new \report_ncmusergrades\output\report($context);
 echo $output->render($page);
 echo $output->footer();
