@@ -28,7 +28,9 @@ require_once($CFG->libdir . '/gradelib.php');
 require_once($CFG->dirroot.'/grade/export/lib.php');
 require_once $CFG->dirroot . '/grade/report/overview/lib.php';
 require_once $CFG->dirroot . '/grade/lib.php';
-require_once $CFG->dirroot . '/report/ncmusergrades/lib.php';
+require_once $CFG->dirroot . '/grade/report/user/externallib.php';
+require_once $CFG->dirroot . '/grade/report/user/lib.php';
+require_once $CFG->dirroot . '/report/ncmusergrades/lib3.php';
 require_once $CFG->dirroot . '/report/ncmusergrades/locallib.php';
 
 require_once $CFG->dirroot . '/user/lib.php';
@@ -130,92 +132,27 @@ if ($mform->is_cancelled()) {
 
         // echo "<pre>mycategory";
         // var_dump($mycategory);
-        // echo "</pre>";    
-
-        // Get course grade_item
-        // $course_item = grade_item::fetch_course_item($course->id);
-
-        // Get the stored grade
-        // $course_grade = new grade_grade(array('itemid'=>$course_item->id, 'userid'=>$fromform->userid));
-          
-        // $course_grade->grade_item =& $course_item;
-        // $finalgrade = $course_grade->finalgrade;
+        // echo "</pre>";
+        /// return tracking object
+        $gpr = new grade_plugin_return(array('type'=>'report', 'plugin'=>'overview', 'userid'=>$user->id));
         
+        $context = context_course::instance($course->id);
+        
+        
+        $userreport = new ncm_grade_report_user($course->id, $gpr, $context, $user->id);
 
-        $geub = new grade_export_update_buffer();
-        $gui = new ncm_graded_users_iterator($fromform->userid, $course, $grade_items, 0);
+        // echo "<pre>userreport";
+        // var_dump($userreport);
+        // echo "</pre>";
+        if ($userreport->fill_table()) {
+            echo '<br />'.$userreport->print_table(true);
+        }
 
-        // echo "<pre>GUI";
-        // var_dump($gui);
+        // echo "<pre>USER";
+        // var_dump($userreport->user);
         // echo "</pre>";
 
-        // $gui->require_active_enrolment(onlyactive);
-        // $gui->allow_user_custom_fields($this->usercustomfields);
-        $gui->init();
-
-        $listgrades = array();
-        $mygrades = array();
-
-        // $output->html('<h4 class="card-title">'.$course->name .' ('.$course->id.')</h4>');
-        echo '<h4 class="card-title">'.$course->shortname .' / '.$course->fullname .' / '.$course->id.' ('.$mycategory->name.')</h4>';
-        echo ncmusergrades_grade_table_open();
-        while ($userdata = $gui->next_user()) {
-
-            // echo "<pre>";
-            // var_dump($userdata);
-            // echo "</pre>";
-            
-            foreach ($userdata->grades as $itemid => $grade) {
-                // echo "<pre>";
-                // print_r($grade);
-                // echo "</pre>";
-
-                $mygrade = array();
-                $mygrade['itemid'] = $itemid;
-
-                $gradeitem = $grade_items[$itemid];
-                $grade->gradeitem =& $gradeitem;
-
-                $listgrades[$itemid] = array(
-                    'itemid' => $itemid,
-                    'itemname' => $gradeitem->itemname,
-                    'itemtype' => $gradeitem->itemtype,
-                    'grademax' => $gradeitem->grademax,
-                    'gradepass' => $gradeitem->gradepass,
-                    'multfactor' => $gradeitem->multfactor,
-                    'weight' => $gradeitem->grademax * $gradeitem->multfactor,
-                    'order' => ($gradeitem->itemtype == 'course') ? 9 : 1,
-                    'myfinalgrade' => $grade->finalgrade,
-                    'myrawgrademax' => $grade->rawgrademax,
-                    'score' => array(
-                        GRADE_DISPLAY_TYPE_REAL => grade_format_gradevalue($grade->finalgrade, $gradeitem, false, GRADE_DISPLAY_TYPE_REAL),
-                        GRADE_DISPLAY_TYPE_LETTER => grade_format_gradevalue($grade->finalgrade, $gradeitem, false, GRADE_DISPLAY_TYPE_LETTER),
-                        GRADE_DISPLAY_TYPE_PERCENTAGE => grade_format_gradevalue($grade->finalgrade, $gradeitem, false, GRADE_DISPLAY_TYPE_PERCENTAGE),
-                    )
-                );
-                $mygrade['finalgrade'] = $grade->finalgrade;
-                $mygrade['rawgrademax'] = $grade->rawgrademax;
-                $mygrades[$itemid] = $mygrade;
-                
-            }
-            echo ncmusergrades_grade_table_content($listgrades);
-            // echo "<pre>";
-            // print_r($listgrades);
-            // echo "</pre>";
-
-            // echo "<pre>";
-            // print_r($mygrades);
-            // echo "</pre>";
-            
-        }
-        // $output->html(ncmusergrades_grade_table_close());
-        echo ncmusergrades_grade_table_close();
-        // Close.
-        $gui->close();
-        $geub->close();
-
-        // $data[] = array(grade_format_gradevalue($finalgrade, $course_item, true));
-    }  
+    }
 
 } else {
   // this branch is executed if the form is submitted but the data doesn't validate and the form should be redisplayed
