@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'NCM User Grades';
-$string['reportlinkname'] = 'User Grades';
+$string['reportlinkname'] = 'Advisor Report';
 $string['filter'] = 'Filter';
 $string['filterby'] = 'Filter by';
 $string['userid'] = 'User ID';
