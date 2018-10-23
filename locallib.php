@@ -33,7 +33,7 @@ function ncmusergrades_user_desc($userdetails) {
     $html = '
     <div class="card card-primary">
     <div class="card-block">
-    <h4 class="card-title"><i class="fa fa-user-circle" aria-hidden="true"></i> '.$userdetails['fullname'].' ('.$userdetails['id'].')</h4>
+    <h4 class="card-title"><i class="fa fa-user-circle" aria-hidden="true"></i> '.$userdetails['fullname'].' ('.$userdetails['username'].')</h4>
     </div>
     </div>';
     return $html;
