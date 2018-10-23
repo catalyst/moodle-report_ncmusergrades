@@ -24,16 +24,17 @@
  */
 
 require_once(__DIR__ . '/../../config.php');
-require_once($CFG->libdir . '/gradelib.php');
-require_once($CFG->dirroot.'/grade/export/lib.php');
-require_once $CFG->dirroot . '/grade/report/overview/lib.php';
-require_once $CFG->dirroot . '/grade/lib.php';
-require_once $CFG->dirroot . '/grade/report/user/externallib.php';
-require_once $CFG->dirroot . '/grade/report/user/lib.php';
-require_once $CFG->dirroot . '/report/ncmusergrades/lib3.php';
+// require_once($CFG->libdir . '/gradelib.php');
+// require_once($CFG->dirroot.'/grade/export/lib.php');
+// require_once $CFG->dirroot . '/grade/report/overview/lib.php';
+// require_once $CFG->dirroot . '/grade/lib.php';
+// require_once $CFG->dirroot . '/grade/report/user/externallib.php';
+// require_once $CFG->dirroot . '/grade/report/user/lib.php';
+require_once $CFG->dirroot . '/report/ncmusergrades/lib.php';
 require_once $CFG->dirroot . '/report/ncmusergrades/locallib.php';
+// require_once $CFG->dirroot . '/user/lib.php';
 
-require_once $CFG->dirroot . '/user/lib.php';
+require_login();
 
 global $DB;
 
@@ -41,9 +42,8 @@ global $DB;
 // $context = context::instance_by_id($pagecontextid);
 $context = context_system::instance();
 
-var_dump($context);
+require_capability('report/ncmusergrades:use', $context);
 
-require_login();
 // \core_competency\api::require_enabled();
 
 // if (!\core_competency\template::can_read_context($context)) {
