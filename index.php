@@ -121,6 +121,11 @@ if ($mform->is_cancelled()) {
         $mycategories[$mycategory->id]->courses[$course->id] = $course;
     }
 
+    // Sort the categories, Most recent at the top
+    usort($mycategories, function ($a, $b) {
+        return strcmp($a->category->name, $b->category->name);
+    });
+
     // echo "<pre>";
     // var_dump($mycategories);
     // echo "</pre>";
