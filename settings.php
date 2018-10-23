@@ -33,12 +33,5 @@ $ADMIN->add(
         get_string('reportlinkname', 'report_ncmusergrades'),
         new moodle_url('/report/ncmusergrades/index.php', array('pagecontextid' => $systemcontextid))));
 
-$ADMIN->add(
-    'reports', 
-    new admin_externalpage(
-        'reportlinkname3',
-        get_string('reportlinkname', 'report_ncmusergrades').' v3',
-        new moodle_url('/report/ncmusergrades/index3.php', array('pagecontextid' => $systemcontextid))));
-
 // no report settings
 $settings = null;
