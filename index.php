@@ -55,7 +55,7 @@ require_capability('report/ncmusergrades:use', $context);
 // $url = new moodle_url('/report/ncmusergrades/index.php', $urlparams);
 $url = new moodle_url('/report/ncmusergrades/index.php');
 
-$title = get_string('pluginname', 'report_ncmusergrades');
+$title = get_string('titlereport', 'report_ncmusergrades');
 
 if ($context->contextlevel == CONTEXT_SYSTEM) {
     $heading = $SITE->fullname;

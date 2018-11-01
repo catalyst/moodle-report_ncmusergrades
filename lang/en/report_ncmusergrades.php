@@ -26,10 +26,11 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'NCM User Grades';
+$string['titlereport'] = 'Student Grades';
 $string['reportlinkname'] = 'Advisor Report';
 $string['filter'] = 'Filter';
 $string['filterby'] = 'Filter by';
-$string['userid'] = 'User ID';
+$string['userid'] = 'Student ID';
 $string['rulemsguserid'] = 'The user ID is required';
 
 $string['nolearningplanavailable'] = 'No learning plan available';
