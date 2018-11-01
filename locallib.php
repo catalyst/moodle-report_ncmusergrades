@@ -33,74 +33,9 @@ function ncmusergrades_user_desc($userdetails) {
     $html = '
     <div class="card card-primary">
     <div class="card-block">
-    <h4 class="card-title"><i class="fa fa-user-circle" aria-hidden="true"></i> '.$userdetails['fullname'].' ('.strtoupper($userdetails['username']).')</h4>
+    <h4 class="card-title"><i class="fa fa-user-circle" aria-hidden="true"></i>
+    '.$userdetails['fullname'].' ('.strtoupper($userdetails['username']).')</h4>
     </div>
     </div>';
     return $html;
 }
-
-// function ncmusergrades_grade_table_open() {
-//     return '<table class="table table-striped table-sm">
-//     <thead>
-//       <tr class="bg-primary">
-//         <th>Assignement Name</th>
-//         <th>Category</th>
-//         <th>Mark</th>
-//         <th>(Weight)</th>
-//         <th>Grade (%)</th>
-//       </tr>
-//     </thead>
-//     <tbody>';
-// }
-
-// function ncmusergrades_grade_table_content($grades) {
-//     $html = '';
-
-//     $coursegrade = null;
-
-//     foreach ($grades as $itemid => $item) {
-//         if ($item['itemtype'] === 'course') {
-//             $coursegrade = $grades[$itemid];
-//             continue;
-//         }
-//         // Open Line
-//         $html .= '<tr>';
-//         // Assignement Name
-//         $html .= '<td>'.$item['itemname'].'</td>';
-//         // Category
-//         $html .= '<td>'.$item['itemtype'].'</td>';
-//         // Mark
-//         $html .= '<td>'.$item['score'][GRADE_DISPLAY_TYPE_REAL].' / '.$item['myrawgrademax'].'</td>';
-//         // Weight
-//         $html .= '<td class="text-danger">'.$item['weight'].'</td>';
-//         // Grade %
-//         $html .= '<td class="text-success">'.$item['score'][GRADE_DISPLAY_TYPE_PERCENTAGE].'</td>';
-//         // Close line 
-//         $html .= '</tr>';
-//     }
-//     if ($coursegrade) {
-//         $html .= ncmusergrades_grade_table_content_course($coursegrade);
-//     }
-//     return $html;
-// }
-
-// function ncmusergrades_grade_table_content_course($coursegrade) {
-//     $html = '';
-//     // Open Line
-//     $html .= '<tfoot><tr class="bg-info">';
-//     // Merge first 2 columns
-//     $html .= '<td colspan="2">&nbsp;</td>';
-//     // Total
-//     $html .= '<td>Total</td>';
-//     // Mark
-//     $html .= '<td>'.$coursegrade['myfinalgrade'].' / '.$coursegrade['myrawgrademax'].'</td>';
-//     // Grade Letter
-//     $html .= '<td>'.$coursegrade['score'][GRADE_DISPLAY_TYPE_LETTER].'</td>';
-//     // Close line 
-//     $html .= '</tr></tfoot>';
-//     return $html;
-// }
-
-// function ncmusergrades_grade_table_close() {
-//     return '</tbody></table>';
-// }

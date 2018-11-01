@@ -27,11 +27,10 @@ defined('MOODLE_INTERNAL') || die;
 $systemcontextid = context_system::instance()->id;
 
 $ADMIN->add(
-    'reports', 
+    'reports',
     new admin_externalpage(
         'reportlinkname',
         get_string('reportlinkname', 'report_ncmusergrades'),
         new moodle_url('/report/ncmusergrades/index.php')));
 
-// no report settings
 $settings = null;

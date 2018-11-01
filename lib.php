@@ -22,9 +22,11 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined ( 'MOODLE_INTERNAL' ) || die ();
+
 require_once($CFG->libdir . '/gradelib.php');
 require_once($CFG->dirroot . '/grade/export/lib.php');
-require_once $CFG->dirroot . '/grade/report/user/lib.php';
+require_once($CFG->dirroot . '/grade/report/user/lib.php');
 
 /**
  * This class iterates over all users that are graded in a course.
@@ -44,62 +46,62 @@ class ncm_grade_report_user extends grade_report_user {
     public function print_table($return=false) {
         $maxspan = $this->maxdepth;
 
-       /// Build table structure
-       $html = "
-           <table cellspacing='0'
-                  cellpadding='0'
-                  summary='" . s($this->get_lang_string('tablesummary', 'gradereport_user')) . "'
-                  class='boxaligncenter generaltable user-grade table-sm'>
-           <thead>
-               <tr>
-                   <th id='".$this->tablecolumns[0]."' class=\"header column-{$this->tablecolumns[0]}\" colspan='$maxspan'>".$this->tableheaders[0]."</th>\n";
+        // Build table structure.
+        $html = "
+            <table cellspacing='0'
+                    cellpadding='0'
+                    summary='" . s($this->get_lang_string('tablesummary', 'gradereport_user')) . "'
+                    class='boxaligncenter generaltable user-grade table-sm'>
+            <thead>
+                <tr>
+                    <th id='".$this->tablecolumns[0]."
+                    ' class=\"header column-{$this->tablecolumns[0]}\" colspan='$maxspan'>".$this->tableheaders[0]."</th>\n";
 
-       for ($i = 1; $i < count($this->tableheaders); $i++) {
-           if ($this->tablecolumns[$i] === 'feedback') {
-               continue;
-           }
-           $html .= "<th id='".$this->tablecolumns[$i]."' class=\"header column-{$this->tablecolumns[$i]}\">".$this->tableheaders[$i]."</th>\n";
-       }
+        for ($i = 1; $i < count($this->tableheaders); $i++) {
+            if ($this->tablecolumns[$i] === 'feedback') {
+                continue;
+            }
+            $html .= "<th id='".$this->tablecolumns[$i]."
+            ' class=\"header column-{$this->tablecolumns[$i]}\">".$this->tableheaders[$i]."</th>\n";
+        }
 
-       $html .= "
-               </tr>
-           </thead>
-           <tbody>\n";
+        $html .= "
+                </tr>
+            </thead>
+            <tbody>\n";
 
-       /// Print out the table data
-       for ($i = 0; $i < count($this->tabledata); $i++) {
-           $html .= "<tr>\n";
-           if (isset($this->tabledata[$i]['leader'])) {
-               $rowspan = $this->tabledata[$i]['leader']['rowspan'];
-               $class = $this->tabledata[$i]['leader']['class'];
-               $html .= "<td class='$class' rowspan='$rowspan'></td>\n";
-           }
-           for ($j = 0; $j < count($this->tablecolumns); $j++) {
-               if ($this->tablecolumns[$j] === 'feedback') {
-                   continue;
-               }
-               $name = $this->tablecolumns[$j];
-               $class = (isset($this->tabledata[$i][$name]['class'])) ? $this->tabledata[$i][$name]['class'] : '';
-               $colspan = (isset($this->tabledata[$i][$name]['colspan'])) ? "colspan='".$this->tabledata[$i][$name]['colspan']."'" : '';
-               $content = (isset($this->tabledata[$i][$name]['content'])) ? $this->tabledata[$i][$name]['content'] : null;
-               $celltype = (isset($this->tabledata[$i][$name]['celltype'])) ? $this->tabledata[$i][$name]['celltype'] : 'td';
-               $id = (isset($this->tabledata[$i][$name]['id'])) ? "id='{$this->tabledata[$i][$name]['id']}'" : '';
-               $headers = (isset($this->tabledata[$i][$name]['headers'])) ? "headers='{$this->tabledata[$i][$name]['headers']}'" : '';
-               if (isset($content)) {
-                   $html .= "<$celltype $id $headers class='$class' $colspan>$content</$celltype>\n";
-               }
-           }
-           $html .= "</tr>\n";
-       }
+        // Print out the table data.
+        for ($i = 0; $i < count($this->tabledata); $i++) {
+            $html .= "<tr>\n";
+            if (isset($this->tabledata[$i]['leader'])) {
+                $rowspan = $this->tabledata[$i]['leader']['rowspan'];
+                $class = $this->tabledata[$i]['leader']['class'];
+                $html .= "<td class='$class' rowspan='$rowspan'></td>\n";
+            }
+            for ($j = 0; $j < count($this->tablecolumns); $j++) {
+                if ($this->tablecolumns[$j] === 'feedback') {
+                    continue;
+                }
+                $name = $this->tablecolumns[$j];
+                $class = (isset($this->tabledata[$i][$name]['class'])) ? $this->tabledata[$i][$name]['class'] : '';
+                $colspan = (isset($this->tabledata[$i][$name]['colspan'])) ? "colspan='".$this->tabledata[$i][$name]['colspan']."'" : '';
+                $content = (isset($this->tabledata[$i][$name]['content'])) ? $this->tabledata[$i][$name]['content'] : null;
+                $celltype = (isset($this->tabledata[$i][$name]['celltype'])) ? $this->tabledata[$i][$name]['celltype'] : 'td';
+                $id = (isset($this->tabledata[$i][$name]['id'])) ? "id='{$this->tabledata[$i][$name]['id']}'" : '';
+                $headers = (isset($this->tabledata[$i][$name]['headers'])) ? "headers='{$this->tabledata[$i][$name]['headers']}'" : '';
+                if (isset($content)) {
+                    $html .= "<$celltype $id $headers class='$class' $colspan>$content</$celltype>\n";
+                }
+            }
+            $html .= "</tr>\n";
+        }
 
-       $html .= "</tbody></table>";
+        $html .= "</tbody></table>";
 
-       if ($return) {
-           return $html;
-       } else {
-           echo $html;
-       }
-   }
-
+        if ($return) {
+            return $html;
+        } else {
+            echo $html;
+        }
+    }
 }
-

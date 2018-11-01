@@ -51,16 +51,6 @@ class filter_form extends \moodleform {
         $mform->setType('userid', PARAM_ALPHANUM);
         $mform->addRule('userid', get_string('rulemsguserid', 'report_ncmusergrades'), 'required', '', 'server', false, false);
 
-        // $options = array(                                                                                                    
-        //     'noselectionstring' => get_string('allareas', 'search'),
-        //     'placeholder' => 'User search',
-        //     // 'ajax' => 'enrol_manual/form-potential-user-selector',
-        //     'ajax' => 'report_ncmusergrades/form-user-selector',
-        //     'courseid' => 1,
-        //     'enrolid' => null                                                            
-        // );
-        // $mform->addElement('autocomplete', 'userid2', get_string('selectusers', 'enrol_manual'), array(), $options);
-        
         // Add a submit button.
         $mform->addElement('submit', 'submitbutton', get_string('submit'));
     }
