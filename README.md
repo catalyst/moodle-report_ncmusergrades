@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/navitaslts/moodle-report_ncmusergrades.svg?branch=master)](https://travis-ci.com/navitaslts/moodle-report_ncmusergrades)
+
 # NCM User Grades #
 
 TODO Describe the plugin shortly here.
