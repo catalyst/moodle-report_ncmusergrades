@@ -31,6 +31,7 @@ $ADMIN->add(
     new admin_externalpage(
         'reportlinkname',
         get_string('reportlinkname', 'report_ncmusergrades'),
-        new moodle_url('/report/ncmusergrades/index.php')));
+        new moodle_url('/report/ncmusergrades/index.php'),
+        'report/ncmusergrades:use'));
 
 $settings = null;
