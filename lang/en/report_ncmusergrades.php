@@ -42,3 +42,5 @@ $string['scalefilterby'] = 'Filter scale(s) by';
 $string['nolearningplanavailable'] = 'No learning plan available';
 $string['apply'] = 'Apply';
 
+$string['ncmusergrades:use'] = 'Advisor Report Use';
+
