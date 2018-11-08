@@ -24,6 +24,7 @@
  */
 
 require_once(__DIR__ . '/../../config.php');
+require_once($CFG->libdir . '/coursecatlib.php');
 require_once($CFG->dirroot . '/report/ncmusergrades/lib.php');
 require_once($CFG->dirroot . '/report/ncmusergrades/locallib.php');
 
