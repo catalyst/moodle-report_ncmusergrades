@@ -32,6 +32,7 @@ $string['filter'] = 'Filter';
 $string['filterby'] = 'Filter by';
 $string['userid'] = 'Student ID';
 $string['rulemsguserid'] = 'The user ID is required';
+$string['privacy:metadata'] = 'The NCM User Grades plugin does not store any personal data.';
 
 $string['nolearningplanavailable'] = 'No learning plan available';
 $string['apply'] = 'Apply';
@@ -43,4 +44,3 @@ $string['nolearningplanavailable'] = 'No learning plan available';
 $string['apply'] = 'Apply';
 
 $string['ncmusergrades:use'] = 'Advisor Report Use';
-

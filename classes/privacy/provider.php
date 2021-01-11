@@ -15,17 +15,32 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Plugin version and other meta-data are defined here.
+ * Plugin privacy provider
  *
- * @package     report_ncmusergrades
- * @copyright   2018 Nicolas Jourdain <nicolas.jourdain@navitas.com>
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    report_ncmusergrades
+ * @author     Scott Verbeek <scottverbeek@catalyst-au.net>
+ * @copyright  2020 Catalyst AU
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+namespace report_ncmusergrades\privacy;
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'report_ncmusergrades';
-$plugin->release = '1.0.4';
-$plugin->version = 2021011100;
-$plugin->requires = 2017111300;
-$plugin->maturity = MATURITY_STABLE;
+/**
+ * Privacy provider class for package report_ncmusergrades
+ */
+class provider implements
+    // This plugin does not store any personal user data.
+    \core_privacy\local\metadata\null_provider {
+
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() : string {
+        return 'privacy:metadata';
+    }
+}
