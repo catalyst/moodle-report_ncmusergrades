@@ -35,7 +35,7 @@ require_once($CFG->dirroot . '/grade/report/user/lib.php');
  * @author Petr Skoda <skodak@moodle.org>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class ncm_grade_report_user extends grade_report_user {
+class ncm_grade_report_user extends \gradereport_user\report\user {
 
 
     /**
